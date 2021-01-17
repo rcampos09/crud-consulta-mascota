@@ -4,7 +4,7 @@ const public = "/public"
 const status404 = "/public/404.html"
 
 //Puesto (Variable Entorno) o (Puerto estatico)
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 //Motor de planilla ejs
 app.set('view engine',"ejs");
@@ -33,6 +33,6 @@ app.use((req,res,next)=>{
 
 
 //Puerto expuesto de Express
-app.listen(port,() => {
-    console.log(`Example app listening at http://localhost:${port}`);
+app.listen(port, () => {
+    console.log('servidor a su servicio en el puerto', port)
 })
