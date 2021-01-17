@@ -17,8 +17,12 @@ app.get('/',(req, res) => {
     res.render("index", {titulo: "Mi pagina de inicio"})
 })
 
-app.get('/servicios',(req,res)  =>{
-    res.render("servicios",{servicios:'Estas en la pagina de servcios'})
+app.get('/servicios',(req,res) => {
+    res.render("servicios",{servicios:'Estas en la pagina de servicios'})
+})
+
+app.get('/mascotas',(req,res) => {
+    res.render("mascotas",{mascotas: 'Estas en la pagina de mascotas'})
 })
 
 app.use((req,res) =>{
