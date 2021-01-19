@@ -15,7 +15,7 @@ const port = process.env.PORT || 8000;
 // Conexion a base de datos MongoDB
 const mongoose = require('mongoose');   
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ansrd.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.USUARIO}:${process.env.PASSWORD}@cluster0.ansrd.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, {
     useNewUrlParser: true, useUnifiedTopology: true}
