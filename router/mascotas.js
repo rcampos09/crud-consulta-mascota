@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Mascota = require('../models/mascota')
-    
+
+// Lectuta de todos documento
 router.get('/', async (req, res) => {
     try {
         const arrayMascotasDB = await Mascota.find()
@@ -16,10 +17,12 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Ruta crear documento
 router.get('/crear',(req,res)=>{
     res.render('crear')
 })
 
+// Guardar documento
 router.post('/', async (req,res) => {
     const body = req.body
     try {
@@ -30,4 +33,47 @@ router.post('/', async (req,res) => {
         console.log(error)
     }
 })
+
+router.get('/:id', async (req,res) =>{
+    const id = req.params.id
+    try {
+        const mascotaDB = await Mascota.findOne({_id: id})
+        res.render('detalle',{
+            mascota:  mascotaDB,
+            error: false
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.render('detalle',{
+            error: true,
+            mensaje: 'No se encuentra id de mascota seleccionado'
+        })
+    }
+})
+
+router.delete('/:id', async (req,res)=> {
+    const id = req.params.id
+    console.log('id desde backend', id)
+    try {
+        const mascotaDB = await Mascota.findByIdAndDelete({ _id: id });
+        console.log(mascotaDB)
+        if (!mascotaDB) {
+            res.json({
+                estado: false,
+                mensaje: 'No se puede eliminar'
+            })
+        } else {
+            res.json({
+                estado: true,
+                mensaje: 'Eliminado!'
+            })
+        }
+        
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 module.exports = router;
