@@ -1,0 +1,32 @@
+<%- include("template/cabecera",{tituloWeb:'Crear mascotas'}) %>
+
+    <div class="container">
+        <h1>Crear mascota</h1>
+        <form action="/mascotas", method="POST">
+            <input 
+            type="text"
+            placeholder="Agregar tipo de animal"
+            class="form-control my-2"
+            name="Tipo"
+            >
+            <input 
+            type="text"
+            placeholder="Agregar nombre de la mascota"
+            class="form-control my-2"
+            name="Nombre"
+            >
+            <input 
+            type="text"
+            placeholder="Agregar rasgos de la mascotas"
+            class="form-control my-2"
+            name="Rasgos"
+            >
+            <button 
+            class="btn btn-success btn-block"
+            type="submit"
+            >
+            Agregar
+            </button>
+        </form>
+    </div>
+<%- include("template/footer") %>
