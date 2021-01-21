@@ -10,33 +10,46 @@
         <% } %>
 
         <% if (!error) { %>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Rasgos</th>
-                    <th scope="col">Acción</th>
-                </tr>
-                </thead>
-                <tbody>
-                            <tr>
-                                <th scope="row"><%= mascota.id %> </th>
-                                <td><%= mascota.Tipo %></td>
-                                <td><%= mascota.Nombre %></td>
-                                <td><%= mascota.Rasgos %></td>
-                                <td>
-                                    <button
-                                    class="btn btn-danger btn-sm"
-                                    data-id="<%= mascota.id %>"
-                                  >
-                                    Eliminar
-                                  </button>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
+
+            <form id="formularioEditar" data-id="<%= mascota.id %>">
+                <input type="text"
+                type="text"
+                class="form-control my-2"
+                name="Tipo"
+                value="<%= mascota.Tipo %>"
+                id="tipoInput"
+                >
+
+                <input type="text"
+                type="text"
+                class="form-control my-2"
+                name="Nombre"
+                value="<%= mascota.Nombre %>"
+                id="nombreInput"
+                >
+
+                <input type="text"
+                type="text"
+                class="form-control my-2"
+                name="Rasgos"
+                value="<%= mascota.Rasgos %>"
+                id="rasgosInput"
+                >
+
+                <button
+                class="btn btn-warning btn-sm"
+                type="submit"
+            >
+                Editar
+            </button>
+            </form>
+            <hr>
+            <button
+            class="btn btn-danger btn-sm"
+            data-id="<%= mascota.id %>"
+            >
+            Eliminar
+            </button>
         <% } %>
     </div> 
 
@@ -53,6 +66,33 @@
             const res = await data.json()
             if(res.estado){
                 window.location.href = '/mascotas';
+            }else{
+                console.log(res)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    })
+
+    const formularioEditar = document.querySelector('#formularioEditar')
+     formularioEditar.addEventListener('submit', async(e) => {
+        e.preventDefault()
+
+            const tipo = document.querySelector('#tipoInput').value
+            const nombre = document.querySelector('#nombreInput').value
+            const rasgos = document.querySelector('#rasgosInput').value
+            const id = formularioEditar.dataset.id
+        try {
+            const data = await fetch(`/mascotas/${id}`, {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({tipo,nombre,rasgos})
+            })
+            const res = await data.json()
+            if(res.estado){
+                window.location.href = '/mascotas'
             }else{
                 console.log(res)
             }
