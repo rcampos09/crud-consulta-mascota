@@ -82,6 +82,7 @@
             const nombre = document.querySelector('#nombreInput').value
             const rasgos = document.querySelector('#rasgosInput').value
             const id = formularioEditar.dataset.id
+            
         try {
             const data = await fetch(`/mascotas/${id}`, {
                 method: 'put',
