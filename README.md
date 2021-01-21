@@ -6,7 +6,7 @@
 
 Project example create CRUD with node.js
 
-* [MongoDB.js] - DataBase no-sql 
+* [MongoDB] - DataBase no-sql 
 * [Bootstrap] - great UI boilerplate for modern web apps
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework
